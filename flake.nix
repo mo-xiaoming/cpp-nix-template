@@ -10,7 +10,7 @@
 
       nativeBuildInputs = [ cmake ninja gdb valgrind clang-tools ];
 
-      buildInputs = [ spdlog doctest boost175 range-v3 ];
+      buildInputs = [ spdlog doctest boost ];
 
       doCheck = true;
       checkPhase = "ctest --output-on-failure";
@@ -21,7 +21,7 @@
 
     packages.x86_64-linux = {
       gcc-pkg = gcc11Stdenv.mkDerivation self.drv-attrs;
-      clang-pkg = (llvmPackages_13.stdenv.mkDerivation self.drv-attrs).overrideAttrs (oa: {
+      clang-pkg = (llvmPackages_14.stdenv.mkDerivation self.drv-attrs).overrideAttrs (oa: {
         CPATH = lib.makeSearchPathOutput "dev" "include" oa.buildInputs;
       });
     };
