@@ -4,11 +4,11 @@
   outputs = { self, nixpkgs }: with nixpkgs.legacyPackages.x86_64-linux; {
     drv-attrs = {
       pname = "cpp-nix-template";
-      version = "0.0.1";
+      version = "0.1.0";
 
       src = self;
 
-      nativeBuildInputs = [ cmake ninja gdb valgrind clang-tools ];
+      nativeBuildInputs = [ cmake ninja gdb valgrind clang-tools cppcheck ];
 
       buildInputs = [ spdlog doctest boost ];
 
@@ -26,6 +26,6 @@
       });
     };
 
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.gcc-pkg;
+    defaultPackage.x86_64-linux = self.packages.x86_64-linux.clang-pkg;
   };
 }
